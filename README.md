@@ -4,6 +4,7 @@ A responsive website for **live Gold and Silver prices** in USD and local curren
 
 ## Features
 
+- **Authentication (Clerk)**: API routes (`/api/rates/*`) are protected—only signed-in users can fetch rates via API. Public pages (home, country pages) remain accessible; they load data server-side.
 - **Homepage**: Gold and Silver per troy ounce in USD; links to country pages.
 - **Country pages**: Clean URLs (`/saudi-gold-silver`, `/uae-gold-silver`, etc.) with:
   - Gold & Silver per ounce in USD + local currency
@@ -15,12 +16,31 @@ A responsive website for **live Gold and Silver prices** in USD and local curren
 
 ## Quick Start
 
-```bash
-npm install
-npm run dev
-```
+1. **Install dependencies**
 
-Open [http://localhost:3000](http://localhost:3000).
+   ```bash
+   npm install
+   ```
+
+2. **Set up Clerk** (required for build and API protection)
+   - Create an application at [Clerk Dashboard](https://dashboard.clerk.com).
+   - Copy your keys and create `.env.local`:
+   ```env
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
+   CLERK_SECRET_KEY=sk_test_...
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+   NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
+   NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
+   ```
+
+3. **Run the app**
+
+   ```bash
+   npm run dev
+   ```
+
+Open [http://localhost:3000](http://localhost:3000). Sign in or sign up to access protected API routes.
 
 ## Live Rates (Optional)
 
@@ -77,6 +97,7 @@ src/
 - **Next.js 16** (App Router)
 - **TypeScript**
 - **Tailwind CSS 4**
+- **Clerk** for authentication and API protection
 - **GoldAPI.io** (optional) for live prices
 
 ## License

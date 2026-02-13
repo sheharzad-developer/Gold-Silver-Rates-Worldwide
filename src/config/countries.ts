@@ -22,6 +22,8 @@ export interface CountryConfig {
   currencyCode: string;
   /** Short label for table header, e.g. "SAR" */
   currencyLabel: string;
+  /** Display name for "Price in X" column, e.g. "dirhams", "riyals" */
+  currencyNameForTable: string;
   /** SEO */
   title: string;
   description: string;
@@ -35,6 +37,7 @@ export const COUNTRIES: CountryConfig[] = [
     currency: "Saudi Riyal",
     currencyCode: "SAR",
     currencyLabel: "SAR",
+    currencyNameForTable: "riyals",
     title: "Gold & Silver Rates in Saudi Arabia – Live SAR Prices",
     description:
       "Live gold and silver prices in Saudi Arabia (SAR). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
@@ -46,6 +49,7 @@ export const COUNTRIES: CountryConfig[] = [
     currency: "UAE Dirham",
     currencyCode: "AED",
     currencyLabel: "AED",
+    currencyNameForTable: "dirhams",
     title: "Gold & Silver Rates in UAE – Live AED Prices",
     description:
       "Live gold and silver prices in UAE (AED). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
@@ -57,6 +61,7 @@ export const COUNTRIES: CountryConfig[] = [
     currency: "Qatari Riyal",
     currencyCode: "QAR",
     currencyLabel: "QAR",
+    currencyNameForTable: "riyals",
     title: "Gold & Silver Rates in Qatar – Live QAR Prices",
     description:
       "Live gold and silver prices in Qatar (QAR). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
@@ -68,6 +73,7 @@ export const COUNTRIES: CountryConfig[] = [
     currency: "Kuwaiti Dinar",
     currencyCode: "KWD",
     currencyLabel: "KWD",
+    currencyNameForTable: "dinars",
     title: "Gold & Silver Rates in Kuwait – Live KWD Prices",
     description:
       "Live gold and silver prices in Kuwait (KWD). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
@@ -79,6 +85,7 @@ export const COUNTRIES: CountryConfig[] = [
     currency: "Pakistani Rupee",
     currencyCode: "PKR",
     currencyLabel: "PKR",
+    currencyNameForTable: "rupees",
     title: "Gold & Silver Rates in Pakistan – Live PKR Prices",
     description:
       "Live gold and silver prices in Pakistan (PKR). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
@@ -90,6 +97,7 @@ export const COUNTRIES: CountryConfig[] = [
     currency: "US Dollar",
     currencyCode: "USD",
     currencyLabel: "USD",
+    currencyNameForTable: "dollars",
     title: "Gold & Silver Rates – Live USD Prices",
     description:
       "Live international gold and silver prices per troy ounce in USD. View country-specific rates for Saudi Arabia, UAE, Qatar, Kuwait, and Pakistan.",

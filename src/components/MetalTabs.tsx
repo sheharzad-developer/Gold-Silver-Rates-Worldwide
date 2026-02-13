@@ -7,24 +7,33 @@ import type { MetalRates } from "@/lib/types";
 interface Props {
   gold: MetalRates;
   silver: MetalRates;
-  currencyLabel: string;
+  currencyNameForTable: string;
+  countryName: string;
+  sectionDate: string;
 }
 
-export function MetalTabs({ gold, silver, currencyLabel }: Props) {
+export function MetalTabs({
+  gold,
+  silver,
+  currencyNameForTable,
+  countryName,
+  sectionDate,
+}: Props) {
   const [active, setActive] = useState<"gold" | "silver">("gold");
   const current = active === "gold" ? gold : silver;
-  const label = active === "gold" ? "Gold" : "Silver";
+  const metalLabel = active === "gold" ? "Gold" : "Silver";
+  const sectionTitle = `Prices of grams of ${metalLabel.toLowerCase()} in the ${countryName}`;
 
   return (
     <section className="space-y-4">
-      <div className="flex rounded-lg border border-amber-200 bg-amber-50/50 p-1 w-fit">
+      <div className="flex border-b border-[var(--border)] gap-0">
         <button
           type="button"
           onClick={() => setActive("gold")}
-          className={`rounded-md px-4 py-2 text-sm font-medium transition ${
+          className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition ${
             active === "gold"
-              ? "bg-amber-200 text-amber-900 shadow"
-              : "text-amber-800 hover:bg-amber-100"
+              ? "border-[var(--table-header)] text-[var(--table-header)]"
+              : "border-transparent text-neutral-600 hover:text-neutral-900"
           }`}
         >
           Gold
@@ -32,10 +41,10 @@ export function MetalTabs({ gold, silver, currencyLabel }: Props) {
         <button
           type="button"
           onClick={() => setActive("silver")}
-          className={`rounded-md px-4 py-2 text-sm font-medium transition ${
+          className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition ${
             active === "silver"
-              ? "bg-amber-200 text-amber-900 shadow"
-              : "text-amber-800 hover:bg-amber-100"
+              ? "border-[var(--table-header)] text-[var(--table-header)]"
+              : "border-transparent text-neutral-600 hover:text-neutral-900"
           }`}
         >
           Silver
@@ -43,8 +52,10 @@ export function MetalTabs({ gold, silver, currencyLabel }: Props) {
       </div>
       <RatesTable
         rows={current.perGram}
-        currencyLabel={currencyLabel}
-        metalLabel={label}
+        currencyNameForTable={currencyNameForTable}
+        metalLabel={metalLabel}
+        sectionTitle={sectionTitle}
+        sectionDate={sectionDate}
       />
     </section>
   );

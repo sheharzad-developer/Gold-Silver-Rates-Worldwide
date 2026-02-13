@@ -24,31 +24,21 @@ export default async function HomePage() {
   return (
     <>
       <Header />
-      <main className="mx-auto max-w-5xl px-4 py-8">
-        <h1 className="text-2xl font-bold text-amber-900 mb-6">
-          Live Gold & Silver Prices (USD)
+      <main className="mx-auto max-w-4xl px-4 py-8">
+        <h1 className="text-3xl font-bold text-center text-neutral-900 mb-6">
+          Gold prices
         </h1>
 
-        <div className="grid sm:grid-cols-2 gap-6 mb-8">
-          <div className="rounded-xl border border-amber-200 bg-amber-50/60 p-6 shadow-sm">
-            <p className="text-sm font-medium text-amber-700 uppercase tracking-wide">
-              Gold per troy ounce
-            </p>
-            <p className="text-3xl font-bold text-amber-900 mt-1">
-              ${rates.goldUsdPerOunce.toLocaleString("en-US", { minimumFractionDigits: 2 })}
-            </p>
-          </div>
-          <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 shadow-sm">
-            <p className="text-sm font-medium text-slate-600 uppercase tracking-wide">
-              Silver per troy ounce
-            </p>
-            <p className="text-3xl font-bold text-slate-800 mt-1">
-              ${rates.silverUsdPerOunce.toLocaleString("en-US", { minimumFractionDigits: 2 })}
-            </p>
-          </div>
+        <div className="border-b border-[var(--border)] pb-4 mb-6">
+          <p className="text-lg text-neutral-800">
+            The price of an ounce of gold today is ${rates.goldUsdPerOunce.toLocaleString("en-US", { minimumFractionDigits: 2 })}.
+          </p>
+          <p className="text-neutral-600 mt-1">
+            Silver per troy ounce: ${rates.silverUsdPerOunce.toLocaleString("en-US", { minimumFractionDigits: 2 })}.
+          </p>
         </div>
 
-        <p className="text-amber-800/90 mb-6">
+        <p className="text-neutral-600 mb-6">
           Click your country page for local currency rates (per ounce and per gram by karat).
         </p>
 
@@ -57,7 +47,7 @@ export default async function HomePage() {
             <Link
               key={c.id}
               href={c.path}
-              className="inline-flex items-center rounded-lg bg-amber-100 px-4 py-2 text-amber-900 font-medium hover:bg-amber-200 transition"
+              className="inline-flex items-center border border-[var(--border)] px-4 py-2 text-neutral-800 font-medium hover:bg-neutral-50 hover:text-[var(--table-header)] transition"
             >
               {c.name} – {c.currencyLabel}
             </Link>
@@ -65,8 +55,8 @@ export default async function HomePage() {
         </div>
 
         {rates.updatedAt && (
-          <p className="mt-8 text-sm text-amber-700/80">
-            Last updated:{" "}
+          <p className="mt-8 text-sm text-neutral-500">
+            Data last updated:{" "}
             {typeof rates.updatedAt === "string"
               ? new Date(rates.updatedAt).toLocaleString()
               : new Date(rates.updatedAt * 1000).toLocaleString()}
