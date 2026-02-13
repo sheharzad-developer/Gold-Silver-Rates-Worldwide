@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { RatesTable } from "./RatesTable";
+import { ar } from "@/config/translations";
 import type { MetalRates } from "@/lib/types";
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
   currencyNameForTable: string;
   countryName: string;
   sectionDate: string;
+  locale?: "ar" | "en";
 }
 
 export function MetalTabs({
@@ -18,11 +20,15 @@ export function MetalTabs({
   currencyNameForTable,
   countryName,
   sectionDate,
+  locale = "en",
 }: Props) {
   const [active, setActive] = useState<"gold" | "silver">("gold");
   const current = active === "gold" ? gold : silver;
-  const metalLabel = active === "gold" ? "Gold" : "Silver";
-  const sectionTitle = `Per gram – ${metalLabel} in ${countryName}`;
+  const isAr = locale === "ar";
+  const metalLabel = active === "gold" ? (isAr ? ar.gold : "Gold") : (isAr ? ar.silver : "Silver");
+  const sectionTitle = isAr
+    ? `${ar.perGramIn} – ${metalLabel} – ${countryName}`
+    : `Per gram – ${metalLabel} in ${countryName}`;
 
   return (
     <section className="space-y-6">
@@ -36,7 +42,7 @@ export function MetalTabs({
               : "text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
           }`}
         >
-          Gold
+          {isAr ? ar.gold : "Gold"}
         </button>
         <button
           type="button"
@@ -47,15 +53,16 @@ export function MetalTabs({
               : "text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
           }`}
         >
-          Silver
+          {isAr ? ar.silver : "Silver"}
         </button>
       </div>
       <RatesTable
         rows={current.perGram}
         currencyNameForTable={currencyNameForTable}
-        metalLabel={metalLabel}
+        metalLabel={active === "gold" ? "Gold" : "Silver"}
         sectionTitle={sectionTitle}
         sectionDate={sectionDate}
+        locale={locale}
       />
     </section>
   );

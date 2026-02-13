@@ -11,6 +11,7 @@ export type CountryId =
   | "qatar"
   | "kuwait"
   | "pakistan"
+  | "india"
   | "international";
 
 export interface CountryConfig {
@@ -24,6 +25,8 @@ export interface CountryConfig {
   currencyLabel: string;
   /** Display name for "Price in X" column, e.g. "dirhams", "riyals" */
   currencyNameForTable: string;
+  /** 'ar' for Arabic (Gulf), 'en' for English */
+  locale?: "ar" | "en";
   /** SEO */
   title: string;
   description: string;
@@ -38,6 +41,7 @@ export const COUNTRIES: CountryConfig[] = [
     currencyCode: "SAR",
     currencyLabel: "SAR",
     currencyNameForTable: "riyals",
+    locale: "ar",
     title: "Gold & Silver Rates in Saudi Arabia – Live SAR Prices",
     description:
       "Live gold and silver prices in Saudi Arabia (SAR). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
@@ -50,6 +54,7 @@ export const COUNTRIES: CountryConfig[] = [
     currencyCode: "AED",
     currencyLabel: "AED",
     currencyNameForTable: "dirhams",
+    locale: "ar",
     title: "Gold & Silver Rates in UAE – Live AED Prices",
     description:
       "Live gold and silver prices in UAE (AED). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
@@ -62,6 +67,7 @@ export const COUNTRIES: CountryConfig[] = [
     currencyCode: "QAR",
     currencyLabel: "QAR",
     currencyNameForTable: "riyals",
+    locale: "ar",
     title: "Gold & Silver Rates in Qatar – Live QAR Prices",
     description:
       "Live gold and silver prices in Qatar (QAR). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
@@ -74,9 +80,22 @@ export const COUNTRIES: CountryConfig[] = [
     currencyCode: "KWD",
     currencyLabel: "KWD",
     currencyNameForTable: "dinars",
+    locale: "ar",
     title: "Gold & Silver Rates in Kuwait – Live KWD Prices",
     description:
       "Live gold and silver prices in Kuwait (KWD). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
+  },
+  {
+    id: "india",
+    path: "/india-gold-silver",
+    name: "India",
+    currency: "Indian Rupee",
+    currencyCode: "INR",
+    currencyLabel: "INR",
+    currencyNameForTable: "rupees",
+    title: "Gold & Silver Rates in India – Live INR Prices",
+    description:
+      "Live gold and silver prices in India (INR). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
   },
   {
     id: "pakistan",
@@ -100,7 +119,7 @@ export const COUNTRIES: CountryConfig[] = [
     currencyNameForTable: "dollars",
     title: "Gold & Silver Rates – Live USD Prices",
     description:
-      "Live international gold and silver prices per troy ounce in USD. View country-specific rates for Saudi Arabia, UAE, Qatar, Kuwait, and Pakistan.",
+      "Live international gold and silver prices per troy ounce in USD. View country-specific rates for Saudi Arabia, UAE, Qatar, Kuwait, Pakistan, and India.",
   },
 ];
 

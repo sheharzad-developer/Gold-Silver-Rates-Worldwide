@@ -6,7 +6,7 @@ import { COUNTRIES, TROY_OUNCE_GRAMS } from "@/config/countries";
 export const metadata = {
   title: "Gold & Silver Rates – Live USD Prices",
   description:
-    "Live international gold and silver prices per gram in USD. View country-specific rates for Saudi Arabia, UAE, Qatar, Kuwait, and Pakistan.",
+    "Live international gold and silver prices per gram in USD. View country-specific rates for Saudi Arabia, UAE, Qatar, Kuwait, Pakistan, and India.",
   openGraph: {
     title: "Gold & Silver Rates – Live USD Prices",
     description:

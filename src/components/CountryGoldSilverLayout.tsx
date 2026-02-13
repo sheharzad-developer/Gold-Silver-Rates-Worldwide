@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { MetalTabs } from "@/components/MetalTabs";
 import type { CountryConfig } from "@/config/countries";
+import { ar } from "@/config/translations";
 import type { AllRates } from "@/lib/types";
 
 interface Props {
@@ -16,25 +17,34 @@ function formatSectionDate() {
   });
 }
 
-function formatDay() {
-  return new Date().toLocaleDateString("en-US", { weekday: "long" });
+function formatDay(locale: "ar" | "en") {
+  return new Date().toLocaleDateString(locale === "ar" ? "ar-SA" : "en-US", {
+    weekday: "long",
+  });
 }
 
 export function CountryGoldSilverLayout({ config, rates }: Props) {
+  const locale = config.locale ?? "en";
   const sectionDate = formatSectionDate();
-  const dayName = formatDay();
+  const dayName = formatDay(locale);
+  const isRtl = locale === "ar";
+  const t = isRtl ? ar : null;
 
   return (
     <>
       <Header />
-      <main className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
+      <main
+        className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16"
+        dir={isRtl ? "rtl" : "ltr"}
+        lang={isRtl ? "ar" : "en"}
+      >
         {/* Hero */}
         <div className="mb-12">
           <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-[var(--gold)]">
             {config.name}
           </p>
           <h1 className="mb-2 text-4xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">
-            Gold & Silver Rates
+            {t ? t.title : "Gold & Silver Rates"}
           </h1>
           <p className="text-[var(--foreground-muted)]">
             {dayName} · {sectionDate}
@@ -48,7 +58,7 @@ export function CountryGoldSilverLayout({ config, rates }: Props) {
               ◆
             </div>
             <p className="mb-1 text-sm font-semibold uppercase tracking-wider text-[var(--gold)]">
-              Gold per troy ounce
+              {t ? t.goldPerOunce : "Gold per troy ounce"}
             </p>
             <p className="font-mono text-3xl font-bold text-[var(--foreground)]">
               ${rates.gold.perOunce.usd.toFixed(2)}
@@ -62,7 +72,7 @@ export function CountryGoldSilverLayout({ config, rates }: Props) {
               ◇
             </div>
             <p className="mb-1 text-sm font-semibold uppercase tracking-wider text-[var(--silver)]">
-              Silver per troy ounce
+              {t ? t.silverPerOunce : "Silver per troy ounce"}
             </p>
             <p className="font-mono text-3xl font-bold text-[var(--foreground)]">
               ${rates.silver.perOunce.usd.toFixed(2)}
@@ -79,10 +89,11 @@ export function CountryGoldSilverLayout({ config, rates }: Props) {
           currencyNameForTable={config.currencyNameForTable}
           countryName={config.name}
           sectionDate={sectionDate}
+          locale={locale}
         />
 
         <div className="mt-8 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] px-5 py-4 text-sm text-[var(--foreground-muted)]">
-          Raw metal prices · Updated {dayName} {sectionDate}
+          {t ? `${t.rawPrices} · ${t.updated} ${dayName} ${sectionDate}` : `Raw metal prices · Updated ${dayName} ${sectionDate}`}
         </div>
       </main>
     </>

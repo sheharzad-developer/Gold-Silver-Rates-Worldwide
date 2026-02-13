@@ -11,6 +11,7 @@ const VALID_IDS: CountryId[] = [
   "qatar",
   "kuwait",
   "pakistan",
+  "india",
   "international",
 ];
 

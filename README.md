@@ -10,8 +10,10 @@ A responsive website for **live Gold and Silver prices** in USD and local curren
   - Gold & Silver per ounce in USD + local currency
   - **Tabs**: Gold (default) and Silver
   - **Table**: 18K, 21K, 22K, 24K with price per gram in USD and local currency
-- **API integration**: Single provider (GoldAPI.io) with configurable caching (default 5 min).
-- **Fallback**: If no API key or API is down, built-in fallback rates are used.
+- **API integration**: Two providers—switch via `GOLD_PRICE_PROVIDER`:
+  - **gold_api_com** (default): [gold-api.com](https://gold-api.com/) – free, unlimited requests, USD only (local via FX)
+  - **goldapi_io**: [GoldAPI.io](https://www.goldapi.io/) – requires `GOLDAPI_KEY`, native multi-currency
+- **Fallback**: If both fail, built-in fallback rates are used.
 - **SEO**: Per-page metadata and Open Graph tags; scalable structure for more countries.
 
 ## Quick Start
@@ -42,14 +44,15 @@ A responsive website for **live Gold and Silver prices** in USD and local curren
 
 Open [http://localhost:3000](http://localhost:3000). Sign in or sign up to access protected API routes.
 
-## Live Rates (Optional)
+## Live Rates
 
-1. Sign up at [GoldAPI.io](https://www.goldapi.io/) (free tier available).
-2. Create `.env.local` in the project root:
-   ```env
-   GOLDAPI_KEY=your_api_key_here
-   ```
-3. Restart the dev server. Without `GOLDAPI_KEY`, the site uses fallback data.
+**Default (gold-api.com)** – No setup. Free, unlimited. Uses FX rates in `fallback-data.ts` for local currencies.
+
+**GoldAPI.io** – Native multi-currency (SAR, AED, INR, etc.):
+```env
+GOLD_PRICE_PROVIDER=goldapi_io
+GOLDAPI_KEY=your_goldapi_io_key
+```
 
 ## Project Structure
 

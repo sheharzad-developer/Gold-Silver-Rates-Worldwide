@@ -10,13 +10,14 @@ import type { AllRates, HomeRates } from "./types";
 const FALLBACK_GOLD_USD_PER_OUNCE = 2650;
 const FALLBACK_SILVER_USD_PER_OUNCE = 31.5;
 
-// Approximate USD to local currency (update periodically if no API)
-const FALLBACK_FX: Record<string, number> = {
+/** USD to local currency – used for fallback and gold-api.com (USD-only API) */
+export const FALLBACK_FX: Record<string, number> = {
   SAR: 3.75,
   AED: 3.67,
   QAR: 3.64,
   KWD: 0.31,
   PKR: 278,
+  INR: 83,
   USD: 1,
 };
 
