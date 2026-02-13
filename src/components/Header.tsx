@@ -7,9 +7,11 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import { COUNTRIES } from "@/config/countries";
+import { isClerkConfigured } from "@/lib/clerk";
 
 export function Header() {
   const countryLinks = COUNTRIES.filter((c) => c.id !== "international");
+  const hasClerk = isClerkConfigured();
 
   return (
     <header className="border-b border-[var(--border)] bg-white sticky top-0 z-10">
@@ -32,24 +34,28 @@ export function Header() {
               </Link>
             ))}
           </nav>
-          <SignedOut>
-            <SignInButton>
-              <button className="text-sm text-neutral-600 hover:text-[var(--table-header)]">
-                Sign in
-              </button>
-            </SignInButton>
-            <SignUpButton>
-              <button
-                className="rounded border border-[var(--table-header)] px-3 py-1.5 text-sm font-medium"
-                style={{ color: "var(--table-header)" }}
-              >
-                Sign up
-              </button>
-            </SignUpButton>
-          </SignedOut>
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
+          {hasClerk && (
+            <>
+              <SignedOut>
+                <SignInButton>
+                  <button className="text-sm text-neutral-600 hover:text-[var(--table-header)]">
+                    Sign in
+                  </button>
+                </SignInButton>
+                <SignUpButton>
+                  <button
+                    className="rounded border border-[var(--table-header)] px-3 py-1.5 text-sm font-medium"
+                    style={{ color: "var(--table-header)" }}
+                  >
+                    Sign up
+                  </button>
+                </SignUpButton>
+              </SignedOut>
+              <SignedIn>
+                <UserButton afterSignOutUrl="/" />
+              </SignedIn>
+            </>
+          )}
         </div>
       </div>
     </header>
