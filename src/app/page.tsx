@@ -1,16 +1,16 @@
 import Link from "next/link";
 import { fetchHomeRates } from "@/lib/goldapi";
 import { Header } from "@/components/Header";
-import { COUNTRIES } from "@/config/countries";
+import { COUNTRIES, TROY_OUNCE_GRAMS } from "@/config/countries";
 
 export const metadata = {
   title: "Gold & Silver Rates – Live USD Prices",
   description:
-    "Live international gold and silver prices per troy ounce in USD. View country-specific rates for Saudi Arabia, UAE, Qatar, Kuwait, and Pakistan.",
+    "Live international gold and silver prices per gram in USD. View country-specific rates for Saudi Arabia, UAE, Qatar, Kuwait, and Pakistan.",
   openGraph: {
     title: "Gold & Silver Rates – Live USD Prices",
     description:
-      "Live international gold and silver prices per troy ounce in USD.",
+      "Live international gold and silver prices per gram in USD.",
   },
 };
 
@@ -18,6 +18,9 @@ export const revalidate = 300;
 
 export default async function HomePage() {
   const rates = await fetchHomeRates();
+
+  const goldPerGram = rates.goldUsdPerOunce / TROY_OUNCE_GRAMS;
+  const silverPerGram = rates.silverUsdPerOunce / TROY_OUNCE_GRAMS;
 
   const countryLinks = COUNTRIES.filter((c) => c.id !== "international");
 
@@ -38,7 +41,7 @@ export default async function HomePage() {
               <span className="gradient-gold">updated in real time</span>
             </h1>
             <p className="max-w-xl text-lg text-[var(--foreground-muted)]">
-              Gold and silver prices per troy ounce in USD. Select your country for per-gram rates in local currency.
+              Gold and silver prices per gram (24K) in USD. Select your country for all karats in local currency.
             </p>
           </div>
         </div>
@@ -50,10 +53,10 @@ export default async function HomePage() {
               ◆
             </div>
             <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-[var(--gold)]">
-              Gold · Per Troy Ounce
+              Gold · Per Gram (24K)
             </p>
             <p className="mb-2 font-mono text-4xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">
-              ${rates.goldUsdPerOunce.toLocaleString("en-US", { minimumFractionDigits: 2 })}
+              ${goldPerGram.toFixed(2)}
             </p>
             <p className="text-[var(--foreground-muted)]">Spot price · Live</p>
           </div>
@@ -62,10 +65,10 @@ export default async function HomePage() {
               ◇
             </div>
             <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-[var(--silver)]">
-              Silver · Per Troy Ounce
+              Silver · Per Gram (999)
             </p>
             <p className="mb-2 font-mono text-4xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">
-              ${rates.silverUsdPerOunce.toLocaleString("en-US", { minimumFractionDigits: 2 })}
+              ${silverPerGram.toFixed(2)}
             </p>
             <p className="text-[var(--foreground-muted)]">Spot price · Live</p>
           </div>
