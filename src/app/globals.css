@@ -1,22 +1,82 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1c1917;
-  --table-header: #7c5c2c;
-  --border: #e5e7eb;
+  --background: #0f0f0f;
+  --background-elevated: #1a1a1a;
+  --foreground: #fafafa;
+  --foreground-muted: #a1a1aa;
+  --gold: #f5c842;
+  --gold-dim: #d4a83b;
+  --gold-glow: rgba(245, 200, 66, 0.15);
+  --silver: #94a3b8;
+  --silver-glow: rgba(148, 163, 184, 0.1);
+  --card-bg: #171717;
+  --border: #262626;
+  --accent: #22c55e;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-sans);
   min-height: 100vh;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--gold-glow); }
+  50% { box-shadow: 0 0 40px var(--gold-glow); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-delay-1 { animation-delay: 0.1s; opacity: 0; }
+.animate-delay-2 { animation-delay: 0.2s; opacity: 0; }
+.animate-delay-3 { animation-delay: 0.3s; opacity: 0; }
+.animate-delay-4 { animation-delay: 0.4s; opacity: 0; }
+
+.gradient-gold {
+  background: linear-gradient(135deg, #f5c842 0%, #d4a83b 50%, #b8860b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card-premium {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 24px -4px rgba(0,0,0,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px -8px rgba(0,0,0,0.5);
+}
+
+.card-gold:hover {
+  border-color: rgba(245, 200, 66, 0.3);
+  box-shadow: 0 12px 40px -8px var(--gold-glow);
+}
+
+.card-silver:hover {
+  border-color: rgba(148, 163, 184, 0.3);
+  box-shadow: 0 12px 40px -8px var(--silver-glow);
 }

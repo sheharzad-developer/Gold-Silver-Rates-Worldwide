@@ -14,39 +14,35 @@ export function Header() {
   const hasClerk = isClerkConfigured();
 
   return (
-    <header className="border-b border-[var(--border)] bg-white sticky top-0 z-10">
-      <div className="mx-auto max-w-4xl px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--background)]/90 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
         <Link
           href="/"
-          className="text-[var(--table-header)] font-semibold hover:underline"
+          className="flex items-center gap-2 text-xl font-bold tracking-tight"
         >
-          Browse sections
+          <span className="gradient-gold">◆</span>
+          <span className="text-[var(--foreground)]">Gold & Silver</span>
         </Link>
-        <div className="flex items-center gap-4">
-          <nav className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-neutral-700">
-            {countryLinks.map((c) => (
-              <Link
-                key={c.id}
-                href={c.path}
-                className="hover:text-[var(--table-header)] hover:underline"
-              >
-                {c.name}
-              </Link>
-            ))}
-          </nav>
+        <nav className="flex flex-wrap items-center gap-1 sm:gap-2">
+          {countryLinks.map((c) => (
+            <Link
+              key={c.id}
+              href={c.path}
+              className="rounded-lg px-4 py-2.5 text-sm font-medium text-[var(--foreground-muted)] transition hover:bg-[var(--border)] hover:text-[var(--foreground)]"
+            >
+              {c.name}
+            </Link>
+          ))}
           {hasClerk && (
-            <>
+            <div className="ml-2 flex items-center gap-2 border-l border-[var(--border)] pl-4">
               <SignedOut>
                 <SignInButton>
-                  <button className="text-sm text-neutral-600 hover:text-[var(--table-header)]">
+                  <button className="text-sm font-medium text-[var(--foreground-muted)] transition hover:text-[var(--gold)]">
                     Sign in
                   </button>
                 </SignInButton>
                 <SignUpButton>
-                  <button
-                    className="rounded border border-[var(--table-header)] px-3 py-1.5 text-sm font-medium"
-                    style={{ color: "var(--table-header)" }}
-                  >
+                  <button className="rounded-lg bg-[var(--gold)] px-4 py-2 text-sm font-semibold text-[var(--background)] transition hover:brightness-110">
                     Sign up
                   </button>
                 </SignUpButton>
@@ -54,9 +50,9 @@ export function Header() {
               <SignedIn>
                 <UserButton afterSignOutUrl="/" />
               </SignedIn>
-            </>
+            </div>
           )}
-        </div>
+        </nav>
       </div>
     </header>
   );

@@ -12,9 +12,9 @@ interface Props {
 
 function rowDescription(metal: string, karat: number): string {
   if (metal.toLowerCase() === "silver") {
-    return karat === 24 ? "The price of a gram of silver (999)" : `The price of a gram of ${karat} karat ${metal.toLowerCase()}`;
+    return karat === 24 ? "Silver (999)" : `${karat}K ${metal}`;
   }
-  return `The price of a gram of ${karat} karat gold`;
+  return `${karat}K gold`;
 }
 
 export function RatesTable({
@@ -25,37 +25,48 @@ export function RatesTable({
   sectionDate,
 }: Props) {
   return (
-    <div className="overflow-x-auto border border-[var(--border)]">
-      <div
-        className="px-4 py-3 text-white font-semibold flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1"
-        style={{ backgroundColor: "var(--table-header)" }}
-      >
-        <span>{sectionTitle}</span>
-        <span className="text-sm font-normal opacity-90">{sectionDate}</span>
+    <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card-bg)] shadow-xl">
+      <div className="flex flex-col gap-1 border-b border-[var(--border)] bg-[var(--background-elevated)] px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+        <h3 className="font-semibold text-[var(--foreground)]">{sectionTitle}</h3>
+        <span className="text-sm text-[var(--foreground-muted)]">{sectionDate}</span>
       </div>
-      <table className="w-full min-w-[320px] text-left">
-        <thead>
-          <tr className="border-b border-[var(--border)]" style={{ backgroundColor: "var(--table-header)", color: "white" }}>
-            <th className="px-4 py-3 font-semibold">Price in dollars</th>
-            <th className="px-4 py-3 font-semibold">Price in {currencyNameForTable}</th>
-            <th className="px-4 py-3 font-semibold">Prices of a gram of {metalLabel.toLowerCase()} today</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
-            <tr
-              key={`${metalLabel}-${row.karat}`}
-              className="border-b border-[var(--border)] last:border-b-0 hover:bg-neutral-50"
-            >
-              <td className="px-4 py-3 text-neutral-800">${row.usdPerGram.toFixed(2)}</td>
-              <td className="px-4 py-3 text-neutral-800">{row.localPerGram.toFixed(2)}</td>
-              <td className="px-4 py-3 text-neutral-700 text-sm">
-                {rowDescription(metalLabel, row.karat)}
-              </td>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[320px]">
+          <thead>
+            <tr className="border-b border-[var(--border)]">
+              <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--foreground-muted)]">
+                Karat
+              </th>
+              <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--gold)]">
+                USD / gram
+              </th>
+              <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-[var(--gold)]">
+                {currencyNameForTable} / gram
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rows.map((row, i) => (
+              <tr
+                key={`${metalLabel}-${row.karat}`}
+                className={`border-b border-[var(--border)] last:border-0 transition hover:bg-[var(--background-elevated)] ${
+                  i % 2 === 1 ? "bg-[var(--background)]/30" : ""
+                }`}
+              >
+                <td className="px-6 py-4 font-medium text-[var(--foreground)]">
+                  {rowDescription(metalLabel, row.karat)}
+                </td>
+                <td className="px-6 py-4 font-mono font-semibold text-[var(--foreground)]">
+                  ${row.usdPerGram.toFixed(2)}
+                </td>
+                <td className="px-6 py-4 font-mono font-semibold text-[var(--foreground)]">
+                  {row.localPerGram.toFixed(2)} {currencyNameForTable}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

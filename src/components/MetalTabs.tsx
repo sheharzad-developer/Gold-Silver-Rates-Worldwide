@@ -22,18 +22,18 @@ export function MetalTabs({
   const [active, setActive] = useState<"gold" | "silver">("gold");
   const current = active === "gold" ? gold : silver;
   const metalLabel = active === "gold" ? "Gold" : "Silver";
-  const sectionTitle = `Prices of grams of ${metalLabel.toLowerCase()} in the ${countryName}`;
+  const sectionTitle = `Per gram – ${metalLabel} in ${countryName}`;
 
   return (
-    <section className="space-y-4">
-      <div className="flex border-b border-[var(--border)] gap-0">
+    <section className="space-y-6">
+      <div className="inline-flex gap-1 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] p-1.5">
         <button
           type="button"
           onClick={() => setActive("gold")}
-          className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition ${
+          className={`rounded-lg px-6 py-3 text-sm font-semibold transition ${
             active === "gold"
-              ? "border-[var(--table-header)] text-[var(--table-header)]"
-              : "border-transparent text-neutral-600 hover:text-neutral-900"
+              ? "bg-[var(--gold)] text-[var(--background)] shadow-lg"
+              : "text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
           }`}
         >
           Gold
@@ -41,10 +41,10 @@ export function MetalTabs({
         <button
           type="button"
           onClick={() => setActive("silver")}
-          className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition ${
+          className={`rounded-lg px-6 py-3 text-sm font-semibold transition ${
             active === "silver"
-              ? "border-[var(--table-header)] text-[var(--table-header)]"
-              : "border-transparent text-neutral-600 hover:text-neutral-900"
+              ? "bg-[var(--silver)] text-[var(--background)] shadow-lg"
+              : "text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
           }`}
         >
           Silver

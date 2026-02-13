@@ -27,31 +27,48 @@ export function CountryGoldSilverLayout({ config, rates }: Props) {
   return (
     <>
       <Header />
-      <main className="mx-auto max-w-4xl px-4 py-8">
-        <h1 className="text-3xl font-bold text-center text-neutral-900 mb-6">
-          Gold prices
-        </h1>
-
-        <div className="border-b border-[var(--border)] pb-4 mb-6">
-          <p className="text-lg text-neutral-800">
-            The price of an ounce of gold today is ${rates.gold.perOunce.usd.toLocaleString("en-US", { minimumFractionDigits: 2 })}.
+      <main className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
+        {/* Hero */}
+        <div className="mb-12">
+          <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-[var(--gold)]">
+            {config.name}
           </p>
-          <p className="text-neutral-600 mt-1">
-            Gold price today, {dayName}, in the {config.name}.
+          <h1 className="mb-2 text-4xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">
+            Gold & Silver Rates
+          </h1>
+          <p className="text-[var(--foreground-muted)]">
+            {dayName} · {sectionDate}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 border-b border-[var(--border)] pb-6">
-          <div>
-            <p className="text-sm text-neutral-600">Gold per troy ounce</p>
-            <p className="text-neutral-900 font-semibold">
-              ${rates.gold.perOunce.usd.toFixed(2)} / {rates.gold.perOunce.local?.toFixed(2)} {config.currencyLabel}
+        {/* Ounce Cards */}
+        <div className="mb-12 grid gap-6 sm:grid-cols-2">
+          <div className="card-premium card-gold rounded-2xl border border-[var(--border)] p-8">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--gold)]/20 text-2xl">
+              ◆
+            </div>
+            <p className="mb-1 text-sm font-semibold uppercase tracking-wider text-[var(--gold)]">
+              Gold per troy ounce
+            </p>
+            <p className="font-mono text-3xl font-bold text-[var(--foreground)]">
+              ${rates.gold.perOunce.usd.toFixed(2)}
+            </p>
+            <p className="mt-2 text-lg text-[var(--foreground-muted)]">
+              {rates.gold.perOunce.local?.toFixed(2)} {config.currencyLabel}
             </p>
           </div>
-          <div>
-            <p className="text-sm text-neutral-600">Silver per troy ounce</p>
-            <p className="text-neutral-900 font-semibold">
-              ${rates.silver.perOunce.usd.toFixed(2)} / {rates.silver.perOunce.local?.toFixed(2)} {config.currencyLabel}
+          <div className="card-premium card-silver rounded-2xl border border-[var(--border)] p-8">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--silver)]/20 text-2xl">
+              ◇
+            </div>
+            <p className="mb-1 text-sm font-semibold uppercase tracking-wider text-[var(--silver)]">
+              Silver per troy ounce
+            </p>
+            <p className="font-mono text-3xl font-bold text-[var(--foreground)]">
+              ${rates.silver.perOunce.usd.toFixed(2)}
+            </p>
+            <p className="mt-2 text-lg text-[var(--foreground-muted)]">
+              {rates.silver.perOunce.local?.toFixed(2)} {config.currencyLabel}
             </p>
           </div>
         </div>
@@ -64,9 +81,8 @@ export function CountryGoldSilverLayout({ config, rates }: Props) {
           sectionDate={sectionDate}
         />
 
-        <div className="mt-6 pt-4 border-t border-[var(--border)] text-sm text-neutral-600 space-y-1">
-          <p>The gold gram price table shows the price of raw gold.</p>
-          <p>Data last updated {dayName} {sectionDate}.</p>
+        <div className="mt-8 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] px-5 py-4 text-sm text-[var(--foreground-muted)]">
+          Raw metal prices · Updated {dayName} {sectionDate}
         </div>
       </main>
     </>
