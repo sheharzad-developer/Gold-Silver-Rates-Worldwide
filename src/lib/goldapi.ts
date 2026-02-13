@@ -37,11 +37,21 @@ async function fetchMetal(
   try {
     const res = await fetch(url, {
       headers: { "x-access-token": apiKey },
-      next: { revalidate: 300 }, // 5 min
+      next: { revalidate: 300 },
     });
-    if (!res.ok) return null;
-    return (await res.json()) as GoldApiResponse;
-  } catch {
+    if (!res.ok) {
+      const text = await res.text();
+      console.error(`GoldAPI ${metal} ${currency}: ${res.status}`, text.slice(0, 200));
+      return null;
+    }
+    const data = (await res.json()) as GoldApiResponse;
+    if (typeof data?.price !== "number") {
+      console.error(`GoldAPI ${metal} ${currency}: invalid response`, data);
+      return null;
+    }
+    return data;
+  } catch (err) {
+    console.error(`GoldAPI ${metal} ${currency} fetch error:`, err);
     return null;
   }
 }
@@ -63,7 +73,7 @@ function buildGramRowsFromOunce(
 }
 
 export async function fetchHomeRates(): Promise<HomeRates> {
-  const apiKey = process.env.GOLDAPI_KEY;
+  const apiKey = process.env.GOLDAPI_KEY?.trim();
   if (!apiKey) return getFallbackHomeRates();
 
   const [gold, silver] = await Promise.all([
@@ -82,7 +92,7 @@ export async function fetchHomeRates(): Promise<HomeRates> {
 }
 
 export async function fetchCountryRates(countryId: CountryId): Promise<AllRates> {
-  const apiKey = process.env.GOLDAPI_KEY;
+  const apiKey = process.env.GOLDAPI_KEY?.trim();
   const currency = CURRENCY_MAP[countryId];
   if (!apiKey) return getFallbackCountryRates(currency);
 
