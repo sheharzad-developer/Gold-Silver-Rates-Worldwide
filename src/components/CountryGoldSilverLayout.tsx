@@ -92,7 +92,7 @@ export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
         <MetalTabs
           gold={rates.gold}
           silver={rates.silver}
-          currencyNameForTable={config.currencyNameForTable}
+          currencyNameForTable={isRtl && config.currencyNameForTableAr ? config.currencyNameForTableAr : config.currencyNameForTable}
           countryName={config.name}
           sectionDate={sectionDate}
           locale={locale}

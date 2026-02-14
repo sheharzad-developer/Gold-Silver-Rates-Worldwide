@@ -25,6 +25,8 @@ export interface CountryConfig {
   currencyLabel: string;
   /** Display name for "Price in X" column, e.g. "dirhams", "riyals" */
   currencyNameForTable: string;
+  /** Arabic label when locale is ar, e.g. "ريالات" */
+  currencyNameForTableAr?: string;
   /** 'ar' for Arabic (Gulf), 'en' for English */
   locale?: "ar" | "en";
   /** SEO */
@@ -45,6 +47,7 @@ export const COUNTRIES: CountryConfig[] = [
     currencyCode: "SAR",
     currencyLabel: "SAR",
     currencyNameForTable: "riyals",
+    currencyNameForTableAr: "ريال سعودي",
     locale: "ar",
     title: "Gold & Silver Rates in Saudi Arabia – Live SAR Prices",
     description:
@@ -60,6 +63,7 @@ export const COUNTRIES: CountryConfig[] = [
     currencyCode: "AED",
     currencyLabel: "AED",
     currencyNameForTable: "dirhams",
+    currencyNameForTableAr: "دراهم",
     locale: "ar",
     title: "Gold & Silver Rates in UAE – Live AED Prices",
     description:
@@ -73,6 +77,7 @@ export const COUNTRIES: CountryConfig[] = [
     currencyCode: "QAR",
     currencyLabel: "QAR",
     currencyNameForTable: "riyals",
+    currencyNameForTableAr: "ريالات",
     locale: "ar",
     title: "Gold & Silver Rates in Qatar – Live QAR Prices",
     description:
@@ -86,6 +91,7 @@ export const COUNTRIES: CountryConfig[] = [
     currencyCode: "KWD",
     currencyLabel: "KWD",
     currencyNameForTable: "dinars",
+    currencyNameForTableAr: "دنانير",
     locale: "ar",
     title: "Gold & Silver Rates in Kuwait – Live KWD Prices",
     description:

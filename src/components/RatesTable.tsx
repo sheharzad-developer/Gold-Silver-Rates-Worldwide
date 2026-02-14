@@ -55,7 +55,7 @@ export function RatesTable({
               <th className={`px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[var(--gold)] ${isRtl ? "text-right" : "text-left"}`}>
                 {isRtl ? ar.usdPerGram : "USD / gram"}
               </th>
-              <th className={`px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[var(--gold)] ${isRtl ? "text-right" : "text-left"}`}>
+              <th className={`px-6 py-4 text-sm font-semibold uppercase tracking-wider text-[var(--gold)] ${isRtl ? "text-right" : "text-left"}`}>
                 {currencyNameForTable} / {isRtl ? ar.perGramIn : "gram"}
               </th>
             </tr>
@@ -74,7 +74,7 @@ export function RatesTable({
                 <td className={`px-6 py-4 font-mono font-semibold text-[var(--foreground)] ${isRtl ? "text-right" : "text-left"}`}>
                   ${row.usdPerGram.toFixed(2)}
                 </td>
-                <td className={`px-6 py-4 font-mono font-semibold text-[var(--foreground)] ${isRtl ? "text-right" : "text-left"}`}>
+                <td className={`px-6 py-4 text-lg font-mono font-semibold text-[var(--foreground)] ${isRtl ? "text-right" : "text-left"}`}>
                   {row.localPerGram.toFixed(2)} {currencyNameForTable}
                 </td>
               </tr>
