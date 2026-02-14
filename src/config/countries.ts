@@ -123,7 +123,7 @@ export const COUNTRIES: CountryConfig[] = [
   },
 ];
 
-export const KARATS = [18, 21, 22, 24] as const;
+export const KARATS = [24, 22, 21, 18] as const;
 export type Karat = (typeof KARATS)[number];
 
 /** Purity ratio (e.g. 18K = 18/24) */

@@ -49,7 +49,7 @@ export function getFallbackCountryRates(currencyCode: string): AllRates {
   const rate = FALLBACK_FX[currencyCode] ?? 1;
   const goldLocal = FALLBACK_GOLD_USD_PER_OUNCE * rate;
   const silverLocal = FALLBACK_SILVER_USD_PER_OUNCE * rate;
-  const karats = [18, 21, 22, 24] as const;
+  const karats = [24, 22, 21, 18] as const;
 
   return {
     currencyCode,

@@ -163,7 +163,7 @@ export async function fetchCountryRates(countryId: CountryId): Promise<AllRates>
       const fx = FALLBACK_FX[currency] ?? 1;
       const goldLocal = goldUsd * fx;
       const silverLocal = silverUsd * fx;
-      const karats = [18, 21, 22, 24] as const;
+      const karats = [24, 22, 21, 18] as const;
       return {
         currencyCode: currency,
         gold: {
@@ -198,7 +198,7 @@ export async function fetchCountryRates(countryId: CountryId): Promise<AllRates>
         const sUsd = silverUsd.price;
         const gLocal = goldLocal?.price ?? gUsd * (FALLBACK_FX[currency] ?? 1);
         const sLocal = silverLocal?.price ?? sUsd * (FALLBACK_FX[currency] ?? 1);
-        const karats = [18, 21, 22, 24] as const;
+        const karats = [24, 22, 21, 18] as const;
         return {
           currencyCode: currency,
           gold: {

@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { MetalTabs } from "@/components/MetalTabs";
+import { CountryContent } from "@/components/CountryContent";
 import type { CountryConfig } from "@/config/countries";
 import { ar } from "@/config/translations";
 import type { AllRates } from "@/lib/types";
@@ -7,6 +8,11 @@ import type { AllRates } from "@/lib/types";
 interface Props {
   config: CountryConfig;
   rates: AllRates;
+  /** Optional page content (article + FAQ) for Saudi etc. */
+  pageContent?: {
+    article: { h1: string; sections: { h2: string; body: string }[] };
+    faq: { q: string; a: string }[];
+  };
 }
 
 function formatSectionDate() {
@@ -23,7 +29,7 @@ function formatDay(locale: "ar" | "en") {
   });
 }
 
-export function CountryGoldSilverLayout({ config, rates }: Props) {
+export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
   const locale = config.locale ?? "en";
   const sectionDate = formatSectionDate();
   const dayName = formatDay(locale);
@@ -34,12 +40,12 @@ export function CountryGoldSilverLayout({ config, rates }: Props) {
     <>
       <Header />
       <main
-        className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16"
+        className="mx-auto max-w-6xl px-4 py-6 sm:px-8 sm:py-8"
         dir={isRtl ? "rtl" : "ltr"}
         lang={isRtl ? "ar" : "en"}
       >
         {/* Hero */}
-        <div className="mb-12">
+        <div className="mb-6">
           <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-[var(--gold)]">
             {config.name}
           </p>
@@ -52,8 +58,8 @@ export function CountryGoldSilverLayout({ config, rates }: Props) {
         </div>
 
         {/* Ounce Cards */}
-        <div className="mb-12 grid gap-6 sm:grid-cols-2">
-          <div className="card-premium card-gold rounded-2xl border border-[var(--border)] p-8">
+        <div className="mb-6 grid gap-6 sm:grid-cols-2">
+          <div className="card-premium card-gold rounded-2xl border border-[var(--border)] p-6">
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--gold)]/20 text-2xl">
               ◆
             </div>
@@ -67,7 +73,7 @@ export function CountryGoldSilverLayout({ config, rates }: Props) {
               {rates.gold.perOunce.local?.toFixed(2)} {config.currencyLabel}
             </p>
           </div>
-          <div className="card-premium card-silver rounded-2xl border border-[var(--border)] p-8">
+          <div className="card-premium card-silver rounded-2xl border border-[var(--border)] p-6">
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--silver)]/20 text-2xl">
               ◇
             </div>
@@ -92,9 +98,13 @@ export function CountryGoldSilverLayout({ config, rates }: Props) {
           locale={locale}
         />
 
-        <div className="mt-8 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] px-5 py-4 text-sm text-[var(--foreground-muted)]">
+        <div className="mt-6 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] px-5 py-4 text-sm text-[var(--foreground-muted)]">
           {t ? `${t.rawPrices} · ${t.updated} ${dayName} ${sectionDate}` : `Raw metal prices · Updated ${dayName} ${sectionDate}`}
         </div>
+
+        {pageContent && (
+          <CountryContent article={pageContent.article} faq={pageContent.faq} />
+        )}
       </main>
     </>
   );

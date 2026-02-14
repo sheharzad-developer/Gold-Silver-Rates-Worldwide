@@ -31,7 +31,7 @@ export function MetalTabs({
     : `Per gram – ${metalLabel} in ${countryName}`;
 
   return (
-    <section className="space-y-6">
+    <section className="space-y-4">
       <div className="inline-flex gap-1 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] p-1.5">
         <button
           type="button"
