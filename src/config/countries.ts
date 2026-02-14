@@ -30,6 +30,8 @@ export interface CountryConfig {
   /** SEO */
   title: string;
   description: string;
+  /** Optional Arabic page heading (overrides ar.title when locale is ar) */
+  titleAr?: string;
 }
 
 export const COUNTRIES: CountryConfig[] = [
@@ -45,6 +47,7 @@ export const COUNTRIES: CountryConfig[] = [
     title: "Gold & Silver Rates in Saudi Arabia – Live SAR Prices",
     description:
       "Live gold and silver prices in Saudi Arabia (SAR). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
+    titleAr: "اسعار الذهب والفضة اليوم في السعودية",
   },
   {
     id: "uae",

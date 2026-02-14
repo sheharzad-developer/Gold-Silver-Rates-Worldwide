@@ -50,7 +50,7 @@ export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
             {config.name}
           </p>
           <h1 className="mb-2 text-4xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">
-            {t ? t.title : "Gold & Silver Rates"}
+            {t ? (config.titleAr ?? t.title) : "Gold & Silver Rates"}
           </h1>
           <p className="text-[var(--foreground-muted)]">
             {dayName} · {sectionDate}
