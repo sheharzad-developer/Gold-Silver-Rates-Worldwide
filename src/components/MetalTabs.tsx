@@ -12,6 +12,8 @@ interface Props {
   countryName: string;
   sectionDate: string;
   locale?: "ar" | "en";
+  /** Optional subtitle below tabs (e.g. أسعار جرام الذهب في السعودية) */
+  subtitleAr?: string;
 }
 
 export function MetalTabs({
@@ -21,6 +23,7 @@ export function MetalTabs({
   countryName,
   sectionDate,
   locale = "en",
+  subtitleAr,
 }: Props) {
   const [active, setActive] = useState<"gold" | "silver">("gold");
   const current = active === "gold" ? gold : silver;
@@ -56,6 +59,11 @@ export function MetalTabs({
           {isAr ? ar.silver : "Silver"}
         </button>
       </div>
+      {subtitleAr && (
+        <p className="text-right text-sm font-medium text-[var(--foreground-muted)]">
+          {subtitleAr}
+        </p>
+      )}
       <RatesTable
         rows={current.perGram}
         currencyNameForTable={currencyNameForTable}

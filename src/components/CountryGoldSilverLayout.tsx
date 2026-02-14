@@ -52,11 +52,6 @@ export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
           <h1 className="mb-2 text-4xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">
             {t ? (config.titleAr ?? t.title) : "Gold & Silver Rates"}
           </h1>
-          {config.subtitleAr && (
-            <p className="mb-2 text-lg font-medium text-[var(--foreground-muted)]">
-              {config.subtitleAr}
-            </p>
-          )}
           <p className="text-[var(--foreground-muted)]">
             {dayName} · {sectionDate}
           </p>
@@ -101,6 +96,7 @@ export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
           countryName={config.name}
           sectionDate={sectionDate}
           locale={locale}
+          subtitleAr={config.subtitleAr}
         />
 
         <div className="mt-6 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] px-5 py-4 text-sm text-[var(--foreground-muted)]">
