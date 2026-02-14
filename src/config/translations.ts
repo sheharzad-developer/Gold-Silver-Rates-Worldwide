@@ -13,6 +13,6 @@ export const ar = {
   silver: "فضة",
   rawPrices: "أسعار المعدن الخام",
   updated: "آخر تحديث",
-  rowGold: (k: number) => `ذهب عيار ${k}`,
+  rowGold: (k: number) => `سعر جرام الذهب عيار ${k}`,
   rowSilver: "فضة (999)",
 };
