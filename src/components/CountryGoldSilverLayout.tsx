@@ -97,6 +97,7 @@ export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
           sectionDate={sectionDate}
           locale={locale}
           subtitleAr={config.subtitleAr}
+          showTola={config.showTola}
         />
 
         <div className="mt-6 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] px-5 py-4 text-sm text-[var(--foreground-muted)]">

@@ -14,6 +14,8 @@ interface Props {
   locale?: "ar" | "en";
   /** Optional subtitle below tabs (e.g. أسعار جرام الذهب في السعودية) */
   subtitleAr?: string;
+  /** Show tola column (India, Pakistan) */
+  showTola?: boolean;
 }
 
 export function MetalTabs({
@@ -24,6 +26,7 @@ export function MetalTabs({
   sectionDate,
   locale = "en",
   subtitleAr,
+  showTola,
 }: Props) {
   const [active, setActive] = useState<"gold" | "silver">("gold");
   const current = active === "gold" ? gold : silver;
@@ -71,6 +74,7 @@ export function MetalTabs({
         sectionTitle={sectionTitle}
         sectionDate={sectionDate}
         locale={locale}
+        showTola={showTola}
       />
     </section>
   );

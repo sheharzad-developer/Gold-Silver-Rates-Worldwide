@@ -4,6 +4,8 @@
  */
 
 export const TROY_OUNCE_GRAMS = 31.1035;
+/** 1 tola = 11.6638g (India, Pakistan) */
+export const TOLA_GRAMS = 11.6638;
 
 export type CountryId =
   | "saudi"
@@ -36,6 +38,8 @@ export interface CountryConfig {
   titleAr?: string;
   /** Optional Arabic subtitle below the title */
   subtitleAr?: string;
+  /** Show tola column (India, Pakistan) – 1 tola = 11.664g */
+  showTola?: boolean;
 }
 
 export const COUNTRIES: CountryConfig[] = [
@@ -66,6 +70,8 @@ export const COUNTRIES: CountryConfig[] = [
     currencyNameForTableAr: "دراهم",
     locale: "ar",
     title: "Gold & Silver Rates in UAE – Live AED Prices",
+    titleAr: "اسعار الذهب والفضة اليوم في الإمارات",
+    subtitleAr: "أسعار جرام الذهب في الإمارات",
     description:
       "Live gold and silver prices in UAE (AED). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
   },
@@ -77,9 +83,11 @@ export const COUNTRIES: CountryConfig[] = [
     currencyCode: "QAR",
     currencyLabel: "QAR",
     currencyNameForTable: "riyals",
-    currencyNameForTableAr: "ريالات",
+    currencyNameForTableAr: "الريال القطري",
     locale: "ar",
     title: "Gold & Silver Rates in Qatar – Live QAR Prices",
+    titleAr: "اسعار الذهب والفضة اليوم في قطر",
+    subtitleAr: "أسعار جرامات الذهب في قطر",
     description:
       "Live gold and silver prices in Qatar (QAR). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
   },
@@ -94,6 +102,8 @@ export const COUNTRIES: CountryConfig[] = [
     currencyNameForTableAr: "دنانير",
     locale: "ar",
     title: "Gold & Silver Rates in Kuwait – Live KWD Prices",
+    titleAr: "اسعار الذهب والفضة اليوم في الكويت",
+    subtitleAr: "أسعار جرام الذهب في الكويت",
     description:
       "Live gold and silver prices in Kuwait (KWD). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
   },
@@ -105,6 +115,7 @@ export const COUNTRIES: CountryConfig[] = [
     currencyCode: "INR",
     currencyLabel: "INR",
     currencyNameForTable: "rupees",
+    showTola: true,
     title: "Gold & Silver Rates in India – Live INR Prices",
     description:
       "Live gold and silver prices in India (INR). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
@@ -117,6 +128,7 @@ export const COUNTRIES: CountryConfig[] = [
     currencyCode: "PKR",
     currencyLabel: "PKR",
     currencyNameForTable: "rupees",
+    showTola: true,
     title: "Gold & Silver Rates in Pakistan – Live PKR Prices",
     description:
       "Live gold and silver prices in Pakistan (PKR). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",

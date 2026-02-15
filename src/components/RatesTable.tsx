@@ -2,6 +2,7 @@
 
 import type { GramRateRow } from "@/lib/types";
 import { ar } from "@/config/translations";
+import { TOLA_GRAMS } from "@/config/countries";
 
 interface Props {
   rows: GramRateRow[];
@@ -10,6 +11,8 @@ interface Props {
   sectionTitle: string;
   sectionDate: string;
   locale?: "ar" | "en";
+  /** Show tola column (India, Pakistan) */
+  showTola?: boolean;
 }
 
 function rowDescription(
@@ -34,6 +37,7 @@ export function RatesTable({
   sectionTitle,
   sectionDate,
   locale = "en",
+  showTola,
 }: Props) {
   const isRtl = locale === "ar";
 
@@ -55,33 +59,51 @@ export function RatesTable({
               <th className={`px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[var(--gold)] ${isRtl ? "text-right" : "text-left"}`}>
                 {isRtl ? ar.usdPerGram : "USD / gram"}
               </th>
+              {showTola && (
+                <th className={`px-6 py-4 text-sm font-semibold uppercase tracking-wider text-[var(--gold)] ${isRtl ? "text-right" : "text-left"}`}>
+                  {currencyNameForTable} / tola
+                </th>
+              )}
               <th className={`px-6 py-4 text-sm font-semibold uppercase tracking-wider text-[var(--gold)] ${isRtl ? "text-right" : "text-left"}`}>
                 {currencyNameForTable} / {isRtl ? ar.perGramIn : "gram"}
               </th>
             </tr>
           </thead>
           <tbody>
-            {rows.map((row, i) => (
-              <tr
-                key={`${metalLabel}-${row.karat}`}
-                className={`border-b border-[var(--border)] last:border-0 transition hover:bg-[var(--background-elevated)] ${
-                  i % 2 === 1 ? "bg-[var(--background)]/30" : ""
-                }`}
-              >
-                <td className={`px-6 py-4 font-medium text-[var(--foreground)] ${isRtl ? "text-right" : "text-left"}`}>
-                  {rowDescription(metalLabel, row.karat, locale)}
-                </td>
-                <td className={`px-6 py-4 font-mono font-semibold text-[var(--foreground)] ${isRtl ? "text-right" : "text-left"}`}>
-                  ${row.usdPerGram.toFixed(2)}
-                </td>
-                <td className={`px-6 py-4 text-lg font-mono font-semibold text-[var(--foreground)] ${isRtl ? "text-right" : "text-left"}`}>
-                  {row.localPerGram.toFixed(2)} {currencyNameForTable}
-                </td>
-              </tr>
-            ))}
+            {rows.map((row, i) => {
+              const localPerTola = row.localPerGram * TOLA_GRAMS;
+              return (
+                <tr
+                  key={`${metalLabel}-${row.karat}`}
+                  className={`border-b border-[var(--border)] last:border-0 transition hover:bg-[var(--background-elevated)] ${
+                    i % 2 === 1 ? "bg-[var(--background)]/30" : ""
+                  }`}
+                >
+                  <td className={`px-6 py-4 font-medium text-[var(--foreground)] ${isRtl ? "text-right" : "text-left"}`}>
+                    {rowDescription(metalLabel, row.karat, locale)}
+                  </td>
+                  <td className={`px-6 py-4 font-mono font-semibold text-[var(--foreground)] ${isRtl ? "text-right" : "text-left"}`}>
+                    ${row.usdPerGram.toFixed(2)}
+                  </td>
+                  {showTola && (
+                    <td className={`px-6 py-4 text-lg font-mono font-semibold text-[var(--foreground)] ${isRtl ? "text-right" : "text-left"}`}>
+                      {localPerTola.toFixed(2)} {currencyNameForTable}
+                    </td>
+                  )}
+                  <td className={`px-6 py-4 text-lg font-mono font-semibold text-[var(--foreground)] ${isRtl ? "text-right" : "text-left"}`}>
+                    {row.localPerGram.toFixed(2)} {currencyNameForTable}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
+      {showTola && (
+        <p className="border-t border-[var(--border)] px-6 py-3 text-center text-xs text-[var(--foreground-muted)]">
+          Per tola = Per gram × 11.664
+        </p>
+      )}
     </div>
   );
 }
