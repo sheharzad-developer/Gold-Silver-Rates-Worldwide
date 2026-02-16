@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { isClerkConfigured } from "@/lib/clerk";
+import { Footer } from "@/components/Footer";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -22,8 +23,9 @@ export default function RootLayout({
 }>) {
   const content = (
     <html lang="en">
-      <body className={`${jakarta.variable} font-sans antialiased`}>
-        {children}
+      <body className={`${jakarta.variable} flex min-h-screen flex-col font-sans antialiased`}>
+        <div className="flex-1">{children}</div>
+        <Footer />
       </body>
     </html>
   );

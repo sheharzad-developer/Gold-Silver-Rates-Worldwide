@@ -16,6 +16,8 @@ interface Props {
   subtitleAr?: string;
   /** Show tola column (India, Pakistan) */
   showTola?: boolean;
+  /** Hide USD column (India, Pakistan – focus on local currency) */
+  hideUsdInTable?: boolean;
 }
 
 export function MetalTabs({
@@ -27,6 +29,7 @@ export function MetalTabs({
   locale = "en",
   subtitleAr,
   showTola,
+  hideUsdInTable,
 }: Props) {
   const [active, setActive] = useState<"gold" | "silver">("gold");
   const current = active === "gold" ? gold : silver;
@@ -75,6 +78,7 @@ export function MetalTabs({
         sectionDate={sectionDate}
         locale={locale}
         showTola={showTola}
+        hideUsdInTable={hideUsdInTable}
       />
     </section>
   );

@@ -6,11 +6,10 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
-import { COUNTRIES } from "@/config/countries";
 import { isClerkConfigured } from "@/lib/clerk";
+import { CountryDropdown } from "./CountryDropdown";
 
 export function Header() {
-  const countryLinks = COUNTRIES.filter((c) => c.id !== "international");
   const hasClerk = isClerkConfigured();
 
   return (
@@ -23,16 +22,8 @@ export function Header() {
           <span className="gradient-gold">◆</span>
           <span className="text-[var(--foreground)]">Gold & Silver</span>
         </Link>
-        <nav className="flex flex-wrap items-center gap-1 sm:gap-2">
-          {countryLinks.map((c) => (
-            <Link
-              key={c.id}
-              href={c.path}
-              className="rounded-lg px-4 py-2.5 text-sm font-medium text-[var(--foreground-muted)] transition hover:bg-[var(--border)] hover:text-[var(--foreground)]"
-            >
-              {c.name}
-            </Link>
-          ))}
+        <nav className="flex flex-wrap items-center gap-2 sm:gap-3">
+          <CountryDropdown />
           {hasClerk && (
             <div className="ml-2 flex items-center gap-2 border-l border-[var(--border)] pl-4">
               <SignedOut>

@@ -40,6 +40,10 @@ export interface CountryConfig {
   subtitleAr?: string;
   /** Show tola column (India, Pakistan) – 1 tola = 11.664g */
   showTola?: boolean;
+  /** Hide ounce cards – India/Pakistan (see main page for international) */
+  hideOunceCards?: boolean;
+  /** Hide USD column – India/Pakistan (focus on local currency) */
+  hideUsdInTable?: boolean;
 }
 
 export const COUNTRIES: CountryConfig[] = [
@@ -116,6 +120,8 @@ export const COUNTRIES: CountryConfig[] = [
     currencyLabel: "INR",
     currencyNameForTable: "rupees",
     showTola: true,
+    hideOunceCards: true,
+    hideUsdInTable: true,
     title: "Gold & Silver Rates in India – Live INR Prices",
     description:
       "Live gold and silver prices in India (INR). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
@@ -129,6 +135,8 @@ export const COUNTRIES: CountryConfig[] = [
     currencyLabel: "PKR",
     currencyNameForTable: "rupees",
     showTola: true,
+    hideOunceCards: true,
+    hideUsdInTable: true,
     title: "Gold & Silver Rates in Pakistan – Live PKR Prices",
     description:
       "Live gold and silver prices in Pakistan (PKR). Per ounce and per gram rates for 18K, 21K, 22K, 24K. Updated every 5 minutes.",
