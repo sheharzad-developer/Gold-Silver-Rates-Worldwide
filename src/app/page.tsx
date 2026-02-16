@@ -27,16 +27,16 @@ export default async function HomePage() {
   return (
     <>
       <Header />
-      <main className="mx-auto max-w-6xl px-4 pb-20 sm:px-8">
+      <main className="mx-auto max-w-6xl px-4 pb-20 sm:px-6 md:px-8">
         {/* Hero */}
-        <div className="relative mb-10 overflow-hidden rounded-2xl border border-[var(--border)] bg-gradient-to-br from-[var(--card-bg)] via-[var(--background-elevated)] to-[var(--card-bg)] p-8 sm:p-10">
-          <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[var(--gold)]/10 blur-3xl" />
-          <div className="absolute -bottom-16 -left-16 h-36 w-36 rounded-full bg-[var(--silver)]/10 blur-3xl" />
+        <div className="relative mb-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-gradient-to-br from-[var(--card-bg)] via-[var(--background-elevated)] to-[var(--card-bg)] p-5 sm:p-8 md:p-10">
+          <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[var(--gold)]/10 blur-3xl sm:-right-16 sm:-top-16 sm:h-48 sm:w-48" />
+          <div className="absolute -bottom-12 -left-12 h-28 w-28 rounded-full bg-[var(--silver)]/10 blur-3xl sm:-bottom-16 sm:-left-16 sm:h-36 sm:w-36" />
           <div className="relative">
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--gold)]">
               Live Spot Prices
             </p>
-            <h1 className="mb-3 max-w-2xl text-3xl font-bold leading-tight tracking-tight text-[var(--foreground)] sm:text-4xl">
+            <h1 className="mb-3 max-w-2xl text-2xl font-bold leading-tight tracking-tight text-[var(--foreground)] sm:text-3xl md:text-4xl">
               Gold and Silver price today
             </h1>
             <p className="max-w-xl text-sm text-[var(--foreground-muted)]">
@@ -46,45 +46,58 @@ export default async function HomePage() {
         </div>
 
         {/* Price Cards: Gold ounce, Gold gram | space | Silver ounce, Silver gram */}
-        <div className="mb-10 flex flex-wrap items-stretch justify-center gap-4">
-          <div className="flex gap-4">
-            <div className="card-premium card-gold animate-fade-in animate-delay-1 flex min-w-[140px] flex-col rounded-xl p-5">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--gold)]/20 text-xl">◆</div>
-              <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--gold)]">Gold · Per Ounce</p>
-              <p className="font-mono text-2xl font-bold text-[var(--foreground)]">${rates.goldUsdPerOunce.toFixed(2)}</p>
-              <p className="mt-1 text-xs text-[var(--foreground-muted)]">Spot · Live</p>
+        <div className="mb-10 flex flex-wrap items-stretch justify-center gap-3 sm:gap-4">
+          <div className="flex w-full gap-3 sm:w-auto sm:gap-4">
+            <div className="card-premium card-gold animate-fade-in animate-delay-1 flex min-w-0 flex-1 flex-col rounded-xl p-4 sm:min-w-[130px] sm:flex-none sm:p-5">
+              <div className="mb-2 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/20 text-lg sm:mb-3 sm:h-10 sm:w-10 sm:rounded-xl sm:text-xl">◆</div>
+              <p className="mb-1 truncate text-[10px] font-semibold uppercase leading-tight tracking-wider text-[var(--gold)] sm:text-xs">Gold · Per Ounce</p>
+              <p className="font-mono text-lg font-bold text-[var(--foreground)] sm:text-2xl">${rates.goldUsdPerOunce.toFixed(2)}</p>
+              <p className="mt-1 text-[10px] text-[var(--foreground-muted)] sm:text-xs">Spot · Live</p>
             </div>
-            <div className="card-premium card-gold animate-fade-in animate-delay-1 flex min-w-[140px] flex-col rounded-xl p-5">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--gold)]/20 text-xl">◆</div>
-              <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--gold)]">Gold · Per Gram (24K)</p>
-              <p className="font-mono text-2xl font-bold text-[var(--foreground)]">${goldPerGram.toFixed(2)}</p>
-              <p className="mt-1 text-xs text-[var(--foreground-muted)]">Spot · Live</p>
+            <div className="card-premium card-gold animate-fade-in animate-delay-1 flex min-w-0 flex-1 flex-col rounded-xl p-4 sm:min-w-[130px] sm:flex-none sm:p-5">
+              <div className="mb-2 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--gold)]/20 text-lg sm:mb-3 sm:h-10 sm:w-10 sm:rounded-xl sm:text-xl">◆</div>
+              <p className="mb-1 truncate text-[10px] font-semibold uppercase leading-tight tracking-wider text-[var(--gold)] sm:text-xs">Gold · Per Gram</p>
+              <p className="font-mono text-lg font-bold text-[var(--foreground)] sm:text-2xl">${goldPerGram.toFixed(2)}</p>
+              <p className="mt-1 text-[10px] text-[var(--foreground-muted)] sm:text-xs">Spot · Live</p>
             </div>
           </div>
-          <div className="hidden w-4 sm:block" aria-hidden />
-          <div className="flex gap-4">
-            <div className="card-premium card-silver animate-fade-in animate-delay-2 flex min-w-[140px] flex-col rounded-xl p-5">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--silver)]/20 text-xl">◇</div>
-              <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--silver)]">Silver · Per Ounce</p>
-              <p className="font-mono text-2xl font-bold text-[var(--foreground)]">${rates.silverUsdPerOunce.toFixed(2)}</p>
-              <p className="mt-1 text-xs text-[var(--foreground-muted)]">Spot · Live</p>
+          <div className="hidden w-4 shrink-0 sm:block" aria-hidden />
+          <div className="flex w-full gap-3 sm:w-auto sm:gap-4">
+            <div className="card-premium card-silver animate-fade-in animate-delay-2 flex min-w-0 flex-1 flex-col rounded-xl p-4 sm:min-w-[130px] sm:flex-none sm:p-5">
+              <div className="mb-2 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--silver)]/20 text-lg sm:mb-3 sm:h-10 sm:w-10 sm:rounded-xl sm:text-xl">◇</div>
+              <p className="mb-1 truncate text-[10px] font-semibold uppercase leading-tight tracking-wider text-[var(--silver)] sm:text-xs">Silver · Per Ounce</p>
+              <p className="font-mono text-lg font-bold text-[var(--foreground)] sm:text-2xl">${rates.silverUsdPerOunce.toFixed(2)}</p>
+              <p className="mt-1 text-[10px] text-[var(--foreground-muted)] sm:text-xs">Spot · Live</p>
             </div>
-            <div className="card-premium card-silver animate-fade-in animate-delay-2 flex min-w-[140px] flex-col rounded-xl p-5">
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--silver)]/20 text-xl">◇</div>
-              <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--silver)]">Silver · Per Gram (999)</p>
-              <p className="font-mono text-2xl font-bold text-[var(--foreground)]">${silverPerGram.toFixed(2)}</p>
-              <p className="mt-1 text-xs text-[var(--foreground-muted)]">Spot · Live</p>
+            <div className="card-premium card-silver animate-fade-in animate-delay-2 flex min-w-0 flex-1 flex-col rounded-xl p-4 sm:min-w-[130px] sm:flex-none sm:p-5">
+              <div className="mb-2 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--silver)]/20 text-lg sm:mb-3 sm:h-10 sm:w-10 sm:rounded-xl sm:text-xl">◇</div>
+              <p className="mb-1 truncate text-[10px] font-semibold uppercase leading-tight tracking-wider text-[var(--silver)] sm:text-xs">Silver · Per Gram</p>
+              <p className="font-mono text-lg font-bold text-[var(--foreground)] sm:text-2xl">${silverPerGram.toFixed(2)}</p>
+              <p className="mt-1 text-[10px] text-[var(--foreground-muted)] sm:text-xs">Spot · Live</p>
             </div>
           </div>
         </div>
 
-        {/* Content placeholder – add paragraphs when client provides */}
-        <div className="mb-10 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] p-6 text-[var(--foreground-muted)]">
-          <h2 className="mb-3 text-lg font-semibold text-[var(--foreground)]">About Gold & Silver Prices</h2>
-          <p className="text-sm leading-relaxed">
-            Our platform provides real-time gold and silver rates in USD and local currencies. Prices are updated regularly to help you make informed decisions whether you&apos;re buying, selling, or tracking the market.
+        {/* Content */}
+        <article className="mb-10 space-y-6 sm:space-y-8">
+          <p className="max-w-3xl text-[var(--foreground-muted)] leading-relaxed">
+            Track the gold price today with real-time updates from the global bullion market. Our platform monitors the live gold price, including the latest spot gold rates from the USA and major international trading centers. Whether you are an investor, trader, or buyer, staying updated with global gold prices and silver prices helps you make informed financial decisions based on accurate and timely market data.
           </p>
-        </div>
+
+          <section>
+            <h2 className="mb-3 text-lg font-bold text-[var(--foreground)] sm:text-xl">Live Gold Price & Spot Gold Updates</h2>
+            <p className="max-w-3xl text-[var(--foreground-muted)] leading-relaxed">
+              Our website provides continuous updates on the live gold price, directly reflecting movements in the international market. The spot gold rate is updated in real time, influenced by economic data from the USA, US dollar strength, inflation trends, interest rates, and global geopolitical developments. By tracking these indicators, you can better understand short-term volatility and long-term gold price trends. We ensure that every update reflects accurate international benchmarks so you can follow gold price fluctuations instantly.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 text-lg font-bold text-[var(--foreground)] sm:text-xl">Global Gold Prices & Silver Prices Analysis</h2>
+            <p className="max-w-3xl text-[var(--foreground-muted)] leading-relaxed">
+              Alongside the gold price today, we also provide real-time silver prices to give you a complete overview of the precious metals market. Gold and silver often move together, but silver is additionally impacted by industrial demand and global production levels. Our international market coverage includes USA trading sessions and worldwide bullion exchanges, giving you a comprehensive perspective on gold prices, spot gold performance, and live silver market movements. By monitoring both metals together, investors can identify trends, hedge risks, and capitalize on global market opportunities.
+            </p>
+          </section>
+        </article>
 
         {/* Countries */}
         <div className="mb-12">
@@ -94,7 +107,7 @@ export default async function HomePage() {
           <p className="mb-4 text-sm text-[var(--foreground-muted)]">
             Per-gram and per-ounce prices in 18K, 21K, 22K, 24K for your region.
           </p>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {countryLinks.map((c, i) => (
               <Link
                 key={c.id}

@@ -40,7 +40,7 @@ export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
     <>
       <Header />
       <main
-        className="mx-auto max-w-6xl px-4 py-4 sm:px-8 sm:py-5"
+        className="mx-auto max-w-6xl px-4 py-4 sm:px-6 sm:py-5 md:px-8"
         dir={isRtl ? "rtl" : "ltr"}
         lang={isRtl ? "ar" : "en"}
       >
@@ -49,7 +49,7 @@ export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
           <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-[var(--gold)]">
             {config.name}
           </p>
-          <h1 className="mb-2 text-4xl font-bold tracking-tight text-[var(--foreground)] sm:text-5xl">
+          <h1 className="mb-2 text-2xl font-bold tracking-tight text-[var(--foreground)] sm:text-4xl md:text-5xl">
             {t ? (config.titleAr ?? t.title) : "Gold & Silver Rates"}
           </h1>
           <p className="text-[var(--foreground-muted)]">
@@ -58,14 +58,14 @@ export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
         </div>
 
         {!config.hideOunceCards && (
-          <div className="mb-4 grid gap-4 sm:grid-cols-2">
-            <div className="card-premium card-gold rounded-2xl border border-[var(--border)] p-5">
+          <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="card-premium card-gold rounded-2xl border border-[var(--border)] p-4 sm:p-5">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--gold)]/20 text-2xl">◆</div>
               <p className="mb-1 text-sm font-semibold uppercase tracking-wider text-[var(--gold)]">{t ? t.goldPerOunce : "Gold per troy ounce"}</p>
               <p className="font-mono text-3xl font-bold text-[var(--foreground)]">${rates.gold.perOunce.usd.toFixed(2)}</p>
               <p className="mt-2 text-lg text-[var(--foreground-muted)]">{rates.gold.perOunce.local?.toFixed(2)} {config.currencyLabel}</p>
             </div>
-            <div className="card-premium card-silver rounded-2xl border border-[var(--border)] p-5">
+            <div className="card-premium card-silver rounded-2xl border border-[var(--border)] p-4 sm:p-5">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--silver)]/20 text-2xl">◇</div>
               <p className="mb-1 text-sm font-semibold uppercase tracking-wider text-[var(--silver)]">{t ? t.silverPerOunce : "Silver per troy ounce"}</p>
               <p className="font-mono text-3xl font-bold text-[var(--foreground)]">${rates.silver.perOunce.usd.toFixed(2)}</p>

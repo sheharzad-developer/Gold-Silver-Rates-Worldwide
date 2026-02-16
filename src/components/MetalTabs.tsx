@@ -41,11 +41,11 @@ export function MetalTabs({
 
   return (
     <section className="space-y-4">
-      <div className="inline-flex gap-1 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] p-1.5">
+      <div className="inline-flex w-full flex-wrap gap-1 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] p-1.5 sm:w-auto">
         <button
           type="button"
           onClick={() => setActive("gold")}
-          className={`rounded-lg px-6 py-3 text-sm font-semibold transition ${
+          className={`flex-1 rounded-lg px-4 py-2.5 text-sm font-semibold transition sm:flex-none sm:px-6 sm:py-3 ${
             active === "gold"
               ? "bg-[var(--gold)] text-[var(--background)] shadow-lg"
               : "text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
@@ -56,7 +56,7 @@ export function MetalTabs({
         <button
           type="button"
           onClick={() => setActive("silver")}
-          className={`rounded-lg px-6 py-3 text-sm font-semibold transition ${
+          className={`flex-1 rounded-lg px-4 py-2.5 text-sm font-semibold transition sm:flex-none sm:px-6 sm:py-3 ${
             active === "silver"
               ? "bg-[var(--silver)] text-[var(--background)] shadow-lg"
               : "text-[var(--foreground-muted)] hover:text-[var(--foreground)]"

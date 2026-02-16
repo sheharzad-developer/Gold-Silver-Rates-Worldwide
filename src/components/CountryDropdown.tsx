@@ -31,7 +31,7 @@ export function CountryDropdown() {
         </span>
       </button>
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-1 min-w-[180px] rounded-xl border border-[var(--border)] bg-[var(--card-bg)] py-1 shadow-xl">
+        <div className="absolute left-0 right-0 top-full z-50 mt-1 min-w-[180px] rounded-xl border border-[var(--border)] bg-[var(--card-bg)] py-1 shadow-xl sm:left-auto">
           {countryLinks.map((c) => (
             <Link
               key={c.id}

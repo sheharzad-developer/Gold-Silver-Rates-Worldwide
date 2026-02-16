@@ -47,29 +47,29 @@ export function RatesTable({
   return (
     <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card-bg)] shadow-xl">
       <div
-        className={`flex flex-col gap-1 border-b border-[var(--border)] bg-[var(--background-elevated)] px-6 py-5 sm:flex-row sm:items-center sm:justify-between ${isRtl ? "sm:flex-row-reverse" : ""}`}
+        className={`flex flex-col gap-1 border-b border-[var(--border)] bg-[var(--background-elevated)] px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-5 ${isRtl ? "sm:flex-row-reverse" : ""}`}
       >
-        <h3 className="font-semibold text-[var(--foreground)]">{sectionTitle}</h3>
+        <h3 className="truncate text-base font-semibold text-[var(--foreground)] sm:text-base">{sectionTitle}</h3>
         <span className="text-sm text-[var(--foreground-muted)]">{sectionDate}</span>
       </div>
       <div className="overflow-x-auto">
-        <table className={`w-full min-w-[320px] ${isRtl ? "[direction:rtl]" : ""}`}>
+        <table className={`w-full min-w-[280px] sm:min-w-[320px] ${isRtl ? "[direction:rtl]" : ""}`}>
           <thead>
             <tr className="border-b border-[var(--border)]">
-              <th className={`px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[var(--foreground-muted)] ${isRtl ? "text-right" : "text-left"}`}>
+              <th className={`px-3 py-3 text-xs font-semibold uppercase tracking-wider text-[var(--foreground-muted)] sm:px-6 sm:py-4 ${isRtl ? "text-right" : "text-left"}`}>
                 {isRtl ? ar.karat : "Karat"}
               </th>
               {!hideUsdInTable && (
-                <th className={`px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[var(--gold)] ${isRtl ? "text-right" : "text-left"}`}>
+                <th className={`px-3 py-3 text-xs font-semibold uppercase tracking-wider text-[var(--gold)] sm:px-6 sm:py-4 ${isRtl ? "text-right" : "text-left"}`}>
                   {isRtl ? ar.usdPerGram : "USD / gram"}
                 </th>
               )}
               {showTola && (
-                <th className={`px-6 py-4 text-sm font-semibold uppercase tracking-wider text-[var(--gold)] ${isRtl ? "text-right" : "text-left"}`}>
+                <th className={`px-3 py-3 text-xs font-semibold uppercase tracking-wider text-[var(--gold)] sm:px-6 sm:py-4 sm:text-sm ${isRtl ? "text-right" : "text-left"}`}>
                   {currencyNameForTable} / tola
                 </th>
               )}
-              <th className={`px-6 py-4 text-sm font-semibold uppercase tracking-wider text-[var(--gold)] ${isRtl ? "text-right" : "text-left"}`}>
+              <th className={`px-3 py-3 text-xs font-semibold uppercase tracking-wider text-[var(--gold)] sm:px-6 sm:py-4 sm:text-sm ${isRtl ? "text-right" : "text-left"}`}>
                 {currencyNameForTable} / {isRtl ? ar.perGramIn : "gram"}
               </th>
             </tr>
@@ -84,20 +84,20 @@ export function RatesTable({
                     i % 2 === 1 ? "bg-[var(--background)]/30" : ""
                   }`}
                 >
-                  <td className={`px-6 py-4 font-medium text-[var(--foreground)] ${isRtl ? "text-right" : "text-left"}`}>
+                  <td className={`px-3 py-3 font-medium text-[var(--foreground)] sm:px-6 sm:py-4 ${isRtl ? "text-right" : "text-left"}`}>
                     {rowDescription(metalLabel, row.karat, locale)}
                   </td>
                   {!hideUsdInTable && (
-                    <td className={`px-6 py-4 font-mono font-semibold text-[var(--foreground)] ${isRtl ? "text-right" : "text-left"}`}>
+                    <td className={`px-3 py-3 font-mono text-base font-semibold text-[var(--foreground)] sm:px-6 sm:py-4 ${isRtl ? "text-right" : "text-left"}`}>
                       ${row.usdPerGram.toFixed(2)}
                     </td>
                   )}
                   {showTola && (
-                    <td className={`px-6 py-4 text-lg font-mono font-semibold text-[var(--foreground)] ${isRtl ? "text-right" : "text-left"}`}>
+                    <td className={`px-3 py-3 text-base font-mono font-semibold text-[var(--foreground)] sm:px-6 sm:py-4 sm:text-lg ${isRtl ? "text-right" : "text-left"}`}>
                       {localPerTola.toFixed(2)} {currencyNameForTable}
                     </td>
                   )}
-                  <td className={`px-6 py-4 text-lg font-mono font-semibold text-[var(--foreground)] ${isRtl ? "text-right" : "text-left"}`}>
+                  <td className={`px-3 py-3 text-base font-mono font-semibold text-[var(--foreground)] sm:px-6 sm:py-4 sm:text-lg ${isRtl ? "text-right" : "text-left"}`}>
                     {row.localPerGram.toFixed(2)} {currencyNameForTable}
                   </td>
                 </tr>
@@ -107,7 +107,7 @@ export function RatesTable({
         </table>
       </div>
       {showTola && (
-        <p className="border-t border-[var(--border)] px-6 py-3 text-center text-xs text-[var(--foreground-muted)]">
+        <p className="border-t border-[var(--border)] px-4 py-2 text-center text-xs text-[var(--foreground-muted)] sm:px-6 sm:py-3">
           Per tola = Per gram × 11.664
         </p>
       )}
