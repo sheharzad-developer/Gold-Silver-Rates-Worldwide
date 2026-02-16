@@ -24,7 +24,7 @@ export function Header() {
         </Link>
         <nav className="flex shrink-0 items-center gap-2 sm:gap-3">
           <CountryDropdown />
-          {hasClerk && (
+          {false && hasClerk && (
             <div className="flex items-center gap-2 border-l border-[var(--border)] pl-3 sm:pl-4">
               <SignedOut>
                 <SignInButton>
