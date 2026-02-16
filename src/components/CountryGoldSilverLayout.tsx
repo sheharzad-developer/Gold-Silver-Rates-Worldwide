@@ -89,14 +89,14 @@ export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
           return (
             <div className="mb-6 grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-6 sm:gap-y-8">
               <div className="card-premium card-gold rounded-xl border border-[var(--border)] p-4">
-                <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--gold)]">Gold · Rs · Per tola</p>
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--gold)]">Gold · Per tola</p>
                 <p className="font-mono text-xl font-bold text-[var(--foreground)] sm:text-2xl">
                   Rs {gold24Tola.toFixed(2)}
                 </p>
                 <p className="mt-1 text-xs text-[var(--foreground-muted)]">Gold 24K</p>
               </div>
               <div className="card-premium card-silver rounded-xl border border-[var(--border)] p-4">
-                <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--silver)]">Silver · Rs · Per tola</p>
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--silver)]">Silver · Per tola</p>
                 <p className="font-mono text-xl font-bold text-[var(--foreground)] sm:text-2xl">
                   Rs {silverTola.toFixed(2)}
                 </p>
