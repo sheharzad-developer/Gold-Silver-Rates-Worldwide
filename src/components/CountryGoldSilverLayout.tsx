@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header";
 import { MetalTabs } from "@/components/MetalTabs";
 import { CountryContent } from "@/components/CountryContent";
-import type { CountryConfig } from "@/config/countries";
+import { TOLA_GRAMS, type CountryConfig } from "@/config/countries";
 import { ar } from "@/config/translations";
 import type { AllRates } from "@/lib/types";
 
@@ -73,6 +73,47 @@ export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
             </div>
           </div>
         )}
+
+        {/* India/Pakistan: Per tola & per gram cards (Rs) */}
+        {config.showTola && (() => {
+          const gold24 = rates.gold.perGram.find((r) => r.karat === 24);
+          const gold21 = rates.gold.perGram.find((r) => r.karat === 21);
+          const silver = rates.silver.perGram[0];
+          const gold24Tola = gold24 ? gold24.localPerGram * TOLA_GRAMS : 0;
+          const silverTola = silver ? silver.localPerGram * TOLA_GRAMS : 0;
+          return (
+            <div className="mb-4 grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="card-premium card-gold rounded-xl border border-[var(--border)] p-4">
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--gold)]">Rs · Per tola</p>
+                <p className="font-mono text-xl font-bold text-[var(--foreground)] sm:text-2xl">
+                  {gold24Tola.toFixed(2)}
+                </p>
+                <p className="mt-1 text-xs text-[var(--foreground-muted)]">Gold 24K</p>
+              </div>
+              <div className="card-premium card-gold rounded-xl border border-[var(--border)] p-4">
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--gold)]">Rs · Per gram</p>
+                <p className="font-mono text-xl font-bold text-[var(--foreground)] sm:text-2xl">
+                  {gold24?.localPerGram.toFixed(2) ?? "—"}
+                </p>
+                <p className="mt-1 text-xs text-[var(--foreground-muted)]">Gold 24K</p>
+              </div>
+              <div className="card-premium card-silver rounded-xl border border-[var(--border)] p-4">
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--silver)]">Rs · Per tola</p>
+                <p className="font-mono text-xl font-bold text-[var(--foreground)] sm:text-2xl">
+                  {silverTola.toFixed(2)}
+                </p>
+                <p className="mt-1 text-xs text-[var(--foreground-muted)]">Silver</p>
+              </div>
+              <div className="card-premium card-gold rounded-xl border border-[var(--border)] p-4">
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--gold)]">Rs · Per gram 21K</p>
+                <p className="font-mono text-xl font-bold text-[var(--foreground)] sm:text-2xl">
+                  {gold21?.localPerGram.toFixed(2) ?? "—"}
+                </p>
+                <p className="mt-1 text-xs text-[var(--foreground-muted)]">Gold 21K</p>
+              </div>
+            </div>
+          );
+        })()}
 
         <MetalTabs
           gold={rates.gold}

@@ -37,7 +37,7 @@ export default async function HomePage() {
               Live Spot Prices
             </p>
             <h1 className="mb-3 max-w-2xl text-2xl font-bold leading-tight tracking-tight text-[var(--foreground)] sm:text-3xl md:text-4xl">
-              Gold and Silver price today
+              Live Gold Price Today & Silver Prices in the International Market
             </h1>
             <p className="max-w-xl text-sm text-[var(--foreground-muted)]">
               Gold and silver prices per gram and per ounce in USD. Select your country for all karats in local currency.
