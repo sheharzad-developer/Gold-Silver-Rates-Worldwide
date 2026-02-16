@@ -61,7 +61,7 @@ export default async function HomePage() {
               <p className="mt-1 text-[10px] text-[var(--foreground-muted)] sm:text-xs">Spot · Live</p>
             </div>
           </div>
-          <div className="hidden w-4 shrink-0 sm:block" aria-hidden />
+          <div className="hidden w-12 shrink-0 sm:block md:w-20" aria-hidden />
           <div className="flex w-full gap-3 sm:w-auto sm:gap-4">
             <div className="card-premium card-silver animate-fade-in animate-delay-2 flex min-w-0 flex-1 flex-col rounded-xl p-4 sm:min-w-[130px] sm:flex-none sm:p-5">
               <div className="mb-2 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--silver)]/20 text-lg sm:mb-3 sm:h-10 sm:w-10 sm:rounded-xl sm:text-xl">◇</div>
