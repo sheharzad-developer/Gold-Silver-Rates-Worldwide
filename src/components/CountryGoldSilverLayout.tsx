@@ -8,10 +8,11 @@ import type { AllRates } from "@/lib/types";
 interface Props {
   config: CountryConfig;
   rates: AllRates;
-  /** Optional page content (article + FAQ) for Saudi etc. */
+  /** Optional page content (article + FAQ) for Saudi, India etc. */
   pageContent?: {
     article: { h1: string; sections: { h2: string; body: string }[] };
     faq: { q: string; a: string }[];
+    faqTitle?: string;
   };
 }
 
@@ -50,8 +51,13 @@ export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
             {config.name}
           </p>
           <h1 className="mb-2 text-2xl font-bold tracking-tight text-[var(--foreground)] sm:text-4xl md:text-5xl">
-            {t ? (config.titleAr ?? t.title) : "Gold & Silver Rates"}
+            {config.heading ?? (t ? (config.titleAr ?? t.title) : "Gold & Silver Rates")}
           </h1>
+          {(config.subtitle || config.subtitleAr) && (
+            <p className="mb-2 text-sm font-medium text-[var(--foreground-muted)]">
+              {config.subtitle ?? config.subtitleAr}
+            </p>
+          )}
           <p className="text-[var(--foreground-muted)]">
             {dayName} · {sectionDate}
           </p>
@@ -82,7 +88,7 @@ export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
           const gold24Tola = gold24 ? gold24.localPerGram * TOLA_GRAMS : 0;
           const silverTola = silver ? silver.localPerGram * TOLA_GRAMS : 0;
           return (
-            <div className="mb-4 grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="mb-6 grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-6 sm:gap-y-8">
               <div className="card-premium card-gold rounded-xl border border-[var(--border)] p-4">
                 <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[var(--gold)]">Rs · Per tola</p>
                 <p className="font-mono text-xl font-bold text-[var(--foreground)] sm:text-2xl">
@@ -122,7 +128,7 @@ export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
           countryName={config.name}
           sectionDate={sectionDate}
           locale={locale}
-          subtitleAr={config.subtitleAr}
+          subtitleAr={config.subtitleAr ?? config.subtitle}
           showTola={config.showTola}
           hideUsdInTable={config.hideUsdInTable}
         />
@@ -132,7 +138,11 @@ export function CountryGoldSilverLayout({ config, rates, pageContent }: Props) {
         </div>
 
         {pageContent && (
-          <CountryContent article={pageContent.article} faq={pageContent.faq} />
+          <CountryContent
+            article={pageContent.article}
+            faq={pageContent.faq}
+            faqTitle={pageContent.faqTitle}
+          />
         )}
       </main>
     </>

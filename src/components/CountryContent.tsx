@@ -6,9 +6,11 @@ interface CountryContentProps {
     sections: ContentSection[];
   };
   faq: FaqItem[];
+  /** Optional FAQ section title (default: Arabic or FAQ) */
+  faqTitle?: string;
 }
 
-export function CountryContent({ article, faq }: CountryContentProps) {
+export function CountryContent({ article, faq, faqTitle }: CountryContentProps) {
   return (
     <article className="mt-8 space-y-6 border-t border-[var(--border)] pt-8 sm:mt-10 sm:space-y-8 sm:pt-10">
       {/* Article sections */}
@@ -28,7 +30,9 @@ export function CountryContent({ article, faq }: CountryContentProps) {
 
       {/* FAQ */}
       <section>
-        <h2 className="mb-3 text-lg font-bold text-[var(--foreground)] sm:mb-4 sm:text-xl">الأسئلة الشائعة</h2>
+        <h2 className="mb-3 text-lg font-bold text-[var(--foreground)] sm:mb-4 sm:text-xl">
+          {faqTitle ?? "الأسئلة الشائعة"}
+        </h2>
         <dl className="space-y-3 sm:space-y-4">
           {faq.map((item, i) => (
             <div
