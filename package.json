@@ -5,12 +5,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:static": "node scripts/build-static.js",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.37.3",
     "next": "16.1.6",
+    "@sanity/client": "^6.22.0",
+    "next-sanity": "^9.4.0",
+    "sanity": "^3.69.0",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },

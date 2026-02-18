@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# static build backup (temporary)
+scripts/.static-build-backup
+
+# generated HTML/CSS for Hostinger upload
+hostinger/website

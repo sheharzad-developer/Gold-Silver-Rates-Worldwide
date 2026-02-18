@@ -1,4 +1,5 @@
 import { fetchCountryRates } from "@/lib/goldapi";
+import { getCountryPageContent } from "@/lib/sanity";
 import { CountryGoldSilverLayout } from "@/components/CountryGoldSilverLayout";
 import { getCountryById } from "@/config/countries";
 import { saudiPageContent } from "@/content/saudi";
@@ -19,11 +20,12 @@ export const revalidate = 300;
 export default async function SaudiGoldSilverPage() {
   const config = getCountryById(COUNTRY_ID);
   const rates = await fetchCountryRates(COUNTRY_ID);
+  const pageContent = (await getCountryPageContent(COUNTRY_ID)) ?? saudiPageContent;
   return (
     <CountryGoldSilverLayout
       config={config}
       rates={rates}
-      pageContent={saudiPageContent}
+      pageContent={pageContent}
     />
   );
 }
